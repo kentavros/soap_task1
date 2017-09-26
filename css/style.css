@@ -1,9 +1,9 @@
-.soapCities li{
+.Cities li{
     list-style-type: none;
     text-align: center;
 }
 
-.soapCities ul{
+.Cities ul{
     padding: 0;
 }
 

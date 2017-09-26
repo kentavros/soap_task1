@@ -19,6 +19,7 @@ class BankSoapClient
 
     private function getCurs($date)
     {
+        date_default_timezone_set('Europe/Kiev');
         if (date('Y-m-d', strtotime($date)) == $date){
             $param['On_date'] = date($date);
             $this->curs = $this->objSoap->GetCursOnDate($param)->GetCursOnDateResult->any;

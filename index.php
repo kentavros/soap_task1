@@ -32,11 +32,11 @@ catch (Exception $exception){
 
 //CURL client 1. Outpat without prarm
 $footballCurl = new FootballCurlClient();
+$footballCurl->getCities();
+$citiesCurl = $footballCurl->getHtml();
 
 
 
 
-
-
-include('template/template.php')
+include('template/template.php');
 ?>
