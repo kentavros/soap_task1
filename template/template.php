@@ -9,7 +9,7 @@
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="../css/bootstrap.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- Предупреждение: Respond.js не работает при просмотре страницы через файл:// -->
@@ -28,9 +28,21 @@
 </nav>
 <div class="container center-block ">
     <div class="starter-template text-center">
+        <!--ERROR OUTPAT-->
         <?=$msg? '<p class="alert-danger">'.$msg : '</p>'?>
-
-
+        <!--SOAP OUTPAT-->
+        <?=$cities? '<div class="soapCities"><h4>Output cities with SOAP client from http://footballpool.dataaccess.eu</h4>'.$cities.'</div>' : ''?>
+        <!--SOAP OUTPAT with PARAM-->
+        <div>
+            <h4>Outpat SOAP with param DATE given from http://www.cbr.ru/</h4>
+            <p>Input formate: Y-m-d</p>
+        <form class="form-inline" method="post">
+            <label class="sr-only" for="inlineFormInput">Name</label>
+            <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" name="dateSoap" placeholder="2017-09-26">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <?=$resBankSoap? $resBankSoap : '' ?>
+        </div>
     </div>
 </div>
 
@@ -43,7 +55,6 @@
 <!-- на jQuery (необходим для Bootstrap - х JavaScript плагины) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- Включают все скомпилированные плагины (ниже), или включать отдельные файлы по мере необходимости -->
-<script src="js/bootstrap.js"></script>
-<script src="../js/bootstrap.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 </body>
 </html>

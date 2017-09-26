@@ -1,22 +1,41 @@
 <?php
-$client = new SoapClient('http://footballpool.dataaccess.eu/data/info.wso?WSDL');
-try{
-    echo "<pre>";
-    //print_r($client->__getFunctions());
-    //$result = $client->coaches();
-    //$arr=["bSelected"=>''];
-    //$res2 = $client->AllPlayerNames($arr);
-    //var_dump($result);
-    //var_dump($res2);
-    echo "</pre>";
-}catch (SoapFault $exseption){
-    echo $exception;
+include('libs/config.php');
+include('libs/function.php');
+
+//SOAP client 1. Outpat without prarm
+try
+{
+    $footballSoap = new FootballSoapClient(FOOTBALL_WSDL);
+    $cities = $footballSoap->getCitiesHtml();
+}
+catch (Exception $exception){
+    $msg = $exception;
 }
 
+//SOAP client 2. Outpat with param
+try
+{
+    if ($_SERVER['REQUEST_METHOD'] == "POST")
+    {
+        $date = $_POST['dateSoap'];
+        if ($date)
+        {
+            $bankSoap = new BankSoapClient(BANK_WSDL);
+            $bankSoap->getArrCurs($date);
+            $resBankSoap = $bankSoap->getHtmlCurse();
+        }
+    }
+}
+catch (Exception $exception){
+    $msg = $exception;
+}
 
-$client2 = new SoapClient('http://www.cbr.ru/DailyInfoWebServ/DailyInfo.asmx?WSDL');
-$res3 = $client2->EnumValutes(true);
-var_dump($res3);
+//CURL client 1. Outpat without prarm
+$footballCurl = new FootballCurlClient();
+
+
+
+
 
 
 include('template/template.php')

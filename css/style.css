@@ -1,0 +1,12 @@
+.soapCities li{
+    list-style-type: none;
+    text-align: center;
+}
+
+.soapCities ul{
+    padding: 0;
+}
+
+h4{
+    color: darkblue;
+}
