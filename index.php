@@ -19,4 +19,5 @@ $res3 = $client2->EnumValutes(true);
 var_dump($res3);
 
 
+include('template/template.php')
 ?>
