@@ -23,7 +23,7 @@ $headers = array(
     "Cache-Control: no-cache",
     "Pragma: no-cache",
     "SOAPAction: http://web.cbr.ru/GetCursOnDate", 
-    "Content-length: ".strlen($xml_post_string),
+   // "Content-length: ".strlen($xml_post_string),
 );
 
 $url = $soapUrl;
@@ -32,11 +32,10 @@ $ch = curl_init();
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 1);
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-//curl_setopt($ch, CURLOPT_USERPWD, $soapUser.":".$soapPassword); // username and password - declared at the top of the doc
 curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
 curl_setopt($ch, CURLOPT_TIMEOUT, 10);
 curl_setopt($ch, CURLOPT_POST, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, $xml_post_string); // the SOAP request
+curl_setopt($ch, CURLOPT_POSTFIELDS, $xml_post_string); 
 curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
 $response = curl_exec($ch); 

@@ -35,8 +35,9 @@ $footballCurl = new FootballCurlClient();
 $footballCurl->getCities();
 $citiesCurl = $footballCurl->getHtml();
 
-
-
+//CURL client 2. Outpat with param
+$bankCurl = new BankCurlClient();
+$bankCurl->getCurs('2017-09-26');
 
 include('template/template.php');
 ?>
