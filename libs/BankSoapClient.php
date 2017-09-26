@@ -5,6 +5,11 @@ class BankSoapClient
     private $curs;
     private $objCurse;
 
+    /**
+     * BankSoapClient constructor.
+     * @param $url
+     * @throws Exception
+     */
     public function __construct($url)
     {
         if (filter_var($url, FILTER_VALIDATE_URL))
@@ -17,6 +22,12 @@ class BankSoapClient
         }
     }
 
+    /**
+     * Get data from server and save to prop
+     * @param $date
+     * @return mixed
+     * @throws Exception
+     */
     private function getCurs($date)
     {
         date_default_timezone_set('Europe/Kiev');
@@ -32,7 +43,12 @@ class BankSoapClient
 
     }
 
-    public function getArrCurs($date)
+    /**
+     * get object - cursan save to prop
+     * @param $date
+     * @return mixed
+     */
+    public function getObjCurs($date)
     {
         $this->getCurs($date);
         $xmlObj = new SimpleXMLElement($this->curs);
@@ -40,10 +56,15 @@ class BankSoapClient
         return $this->objCurse;
     }
 
+    /**
+     * get HTML - string
+     * @return bool|string
+     */
     public function getHtmlCurse()
     {
         if(is_object($this->objCurse)){
             $html = '<table class="table">';
+            $html .='<tr><th>Currency name</th><th>Nominal</th><th>Course</th><th>ISO Digital code</th><th>ISO Symbolic code</th></tr>';
             foreach ($this->objCurse as $val){
                 $html .='<tr>';
                 $html .='<td>'.$val->Vname.'</td><td>'.$val->Vnom.'</td><td>'.$val->Vcurs.'</td><td>'.$val->Vcode.'</td><td>'.$val->VchCode.'</td>';
@@ -57,6 +78,4 @@ class BankSoapClient
             return false;
         }
     }
-
-
 }

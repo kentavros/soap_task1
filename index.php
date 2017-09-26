@@ -21,8 +21,8 @@ try
         if ($date)
         {
             $bankSoap = new BankSoapClient(BANK_WSDL);
-            $bankSoap->getArrCurs($date);
-            $resBankSoap = $bankSoap->getHtmlCurse();
+            $bankSoap->getObjCurs($date);
+            $_SESSION['soap'] = $bankSoap->getHtmlCurse();//->After updating or sending the second form, the displayed data is not lost
         }
     }
 }
@@ -31,13 +31,33 @@ catch (Exception $exception){
 }
 
 //CURL client 1. Outpat without prarm
-$footballCurl = new FootballCurlClient();
-$footballCurl->getCities();
-$citiesCurl = $footballCurl->getHtml();
+try
+{
+    $footballCurl = new FootballCurlClient();
+    $citiesCurl = $footballCurl->getHtml();
+}
+catch (Exception $exception)
+{
+    $msg = $exception;
+}
 
 //CURL client 2. Outpat with param
-$bankCurl = new BankCurlClient();
-$bankCurl->getCurs('2017-09-26');
+try
+{
+    if ($_SERVER['REQUEST_METHOD'] == "POST")
+    {
+        $date = $_POST['dateCurl'];
+        if ($date)
+        {
+            $bankCurl = new BankCurlClient();
+            $_SESSION['curl'] = $bankCurl->getHtmlCurse($date);//->After updating or sending the second form, the displayed data is not lost
+        }
+    }
+}
+catch (Exception $exception)
+{
+    $msg = $exception;
+}
 
 include('template/template.php');
 ?>

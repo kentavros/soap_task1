@@ -35,45 +35,38 @@
         <?=$cities? '<div class="col-md-6 Cities"><h4>Output cities with SOAP client from http://footballpool.dataaccess.eu</h4>'.$cities.'</div>' : ''?>
 
        <?=$citiesCurl? '<div class="col-md-6 Cities"><h4>Output cities with CURL client from http://footballpool.dataaccess.eu</h4>'.$citiesCurl.'</div>' : ''?>
-
-
 </div>
+        <div class="row">
+               <!--SOAP OUTPAT with PARAM-->
+                <div class="col-md-6">
+                    <h4>Outpat SOAP with param DATE given from http://www.cbr.ru/</h4>
+                    <p>Input formate: Y-m-d</p>
+                <form class="form-inline" method="post">
+                    <label class="sr-only" for="inlineFormInput">Name</label>
+                    <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" name="dateSoap" value="<?=$_POST['dateSoap']?>" placeholder="2017-09-26">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+                    <?=$_SESSION['soap']? $_SESSION['soap'] : '' ?>
+                </div>
 
-<div class="row">
-
-
-       <!--SOAP OUTPAT with PARAM-->
-        <div class="col-md-6"> 
-            <h4>Outpat SOAP with param DATE given from http://www.cbr.ru/</h4>
-            <p>Input formate: Y-m-d</p>
-        <form class="form-inline" method="post">
-            <label class="sr-only" for="inlineFormInput">Name</label>
-            <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" name="dateSoap" placeholder="2017-09-26">
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-        <?=$resBankSoap? $resBankSoap : '' ?>
+               <!--CURL OUTPAT with PARAM-->
+                <div class="col-md-6">
+                    <h4>Outpat CURL with param DATE given from http://www.cbr.ru/</h4>
+                    <p>Input formate: Y-m-d</p>
+                <form class="form-inline" method="post">
+                    <label class="sr-only" for="inlineFormInput">Name</label>
+                    <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" name="dateCurl" value="<?=$_POST['dateCurl']?>" placeholder="2017-09-26">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+                    <?=$_SESSION['curl']? $_SESSION['curl'] : '' ?>
+                </div>
         </div>
-    
-       <!--CURL OUTPAT with PARAM-->
-        <div class="col-md-6"> 
-            <h4>Outpat CURL with param DATE given from http://www.cbr.ru/</h4>
-            <p>Input formate: Y-m-d</p>
-        <form class="form-inline" method="post">
-            <label class="sr-only" for="inlineFormInput">Name</label>
-            <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" name="dateCurl" placeholder="2017-09-26">
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-        
-        </div>
-</div>
     </div>
-</div>
-
 </div>
 
 <footer class="modal-footer navbar-inverse navbar-fixed-bottom" style="padding: 3px;">
     <div class="container">
-        <a class="navbar-brand" style="float: right" href="#">Task 1</a>
+        <a class="navbar-brand" style="float: right" href="#">Task 1 ... soap the best!</a>
     </div>
 </footer>
 <!-- на jQuery (необходим для Bootstrap - х JavaScript плагины) -->

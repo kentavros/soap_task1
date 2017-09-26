@@ -2258,9 +2258,10 @@ caption {
   text-align: left;
 }
 th {
-  text-align: left;
+  text-align: center;
 }
 .table {
+  margin-top: 20px;
   width: 100%;
   max-width: 100%;
   margin-bottom: 20px;

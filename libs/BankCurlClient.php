@@ -9,16 +9,25 @@ class BankCurlClient
         "Accept: text/xml",
         "Cache-Control: no-cache",
         "Pragma: no-cache",
-        "SOAPAction: http://web.cbr.ru/GetCursOnDate", 
-       // "Content-length: ".strlen($xml_post_string),
+        "SOAPAction: http://web.cbr.ru/GetCursOnDate"
     );
+    private $curs;
 
+    /**
+     * BankCurlClient constructor.
+     */
     public function __construct()
     {
         $this->curl = curl_init();
     }
 
-    public function getCurs($date)
+    /**
+     * Get object data - save to param
+     * @param $date
+     * @return mixed
+     * @throws Exception
+     */
+    private function getCurs($date)
     {
         date_default_timezone_set('Europe/Kiev');
         if (date('Y-m-d', strtotime($date)) == $date)
@@ -41,14 +50,49 @@ class BankCurlClient
             curl_setopt($this->curl, CURLOPT_POSTFIELDS, $this->xmlPostString);
             curl_setopt($this->curl, CURLOPT_HTTPHEADER, $this->headers);
 
-            $response = curl_exec($this->curl); 
+            $response = curl_exec($this->curl);
             curl_close($this->curl);
+            if (!$response){
+                throw new Exception(ERR_URL);
+            }
 
-            var_dump($response);
-            //$arr = new SimpleXMLElement($response);
-            //var_dump($arr);
-
+            $response1 = str_replace("<soap:Body>","",$response);
+            $response2 = str_replace("</soap:Body>","",$response1);
+            $response3 = str_replace("xs:","",$response2);
+            $response4 = str_replace("diffgr:","",$response3);
+            $parse = new SimpleXMLElement($response4);
+            $this->curs = $parse->GetCursOnDateResponse->GetCursOnDateResult->diffgram->ValuteData->ValuteCursOnDate;
+            return $this->curs;
+        }
+        else
+        {
+            throw new Exception(ERR_DATE);
         }
     }
 
+    /**
+     * Get HTML - string
+     * @param $date
+     * @return bool|string
+     */
+    public function getHtmlCurse($date)
+    {
+        $this->getCurs($date);
+        if(is_object($this->curs)){
+            $html = '<table class="table">';
+            $html .='<tr><th>Currency name</th><th>Nominal</th><th>Course</th><th>ISO Digital code</th><th>ISO Symbolic code</th></tr>';
+            foreach ($this->curs as $val)
+            {
+                $html .='<tr>';
+                $html .='<td>'.$val->Vname.'</td><td>'.$val->Vnom.'</td><td>'.$val->Vcurs.'</td><td>'.$val->Vcode.'</td><td>'.$val->VchCode.'</td>';
+                $html .='</tr>';
+            }
+            $html .= '</table>';
+            return $html;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }

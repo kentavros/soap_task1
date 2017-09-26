@@ -1,8 +1,7 @@
 <?php
 $data = '2017-09-06'; // request data from the form
-$soapUrl = "http://www.cbr.ru/DailyInfoWebServ/DailyInfo.asmx?op=GetCursOnDate";// asmx URL of WSDL
-//$soapUser = "username";  //  username
-//$soapPassword = "password";
+$soapUrl = "http://www.cbr.ru/DailyInfoWebServ/DailyInfo.asmx?op=GetCursOnDate";
+
 
 $xml_post_string = 
     '<?xml version="1.0" encoding="utf-8"?>
@@ -41,9 +40,24 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 $response = curl_exec($ch); 
 curl_close($ch);
 
-var_dump($response);
+//var_dump($response);
 
-//$response1 = str_replace("<soap:Body>","",$response);
-//$response2 = str_replace("</soap:Body>","",$response1);
+$response1 = str_replace("<soap:Body>","",$response);
+$response2 = str_replace("</soap:Body>","",$response1);
+$response3 = str_replace("xs:","",$response2);
+$response4 = str_replace("diffgr:","",$response3);
+
+//var_dump($response4);
+
+$parse = new SimpleXMLElement($response4);
+$obj = $parse->GetCursOnDateResponse->GetCursOnDateResult->diffgram->ValuteData->ValuteCursOnDate;
+
+//var_dump($parse->GetCursOnDateResponse->GetCursOnDateResult->diffgram->ValuteData->ValuteCursOnDate);
+foreach ($obj as $value){
+    echo $value->Vname;
+}
+
 
 //$parser = simplexml_load_string($response2);
+
+
