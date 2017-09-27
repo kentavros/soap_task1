@@ -46,7 +46,7 @@
                     <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" name="dateSoap" value="<?=$_POST['dateSoap']?>" placeholder="2017-09-26">
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
-                    <?=$_SESSION['soap']? $_SESSION['soap'] : '' ?>
+                    <?=$resSoap? $resSoap : '' ?>
                 </div>
 
                <!--CURL OUTPAT with PARAM-->
@@ -58,7 +58,7 @@
                     <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" name="dateCurl" value="<?=$_POST['dateCurl']?>" placeholder="2017-09-26">
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
-                    <?=$_SESSION['curl']? $_SESSION['curl'] : '' ?>
+                    <?=$resCurl? $resCurl : '' ?>
                 </div>
         </div>
     </div>

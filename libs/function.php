@@ -15,4 +15,31 @@ function __autoload($class)
     }
 }
 
+/**
+ * Get data from Session to display data
+ * @return bool
+ */
+function getDataSoap()
+{
+    if (isset($_SESSION['soap']))
+    {
+        return $_SESSION['soap'];
+    }
+    else
+    {
+        return false;
+    }
+}
+
+function getDataCurl()
+{
+    if (isset($_SESSION['curl']))
+    {
+        return $_SESSION['curl'];
+    }
+    else
+    {
+        return false;
+    }
+}
 ?>

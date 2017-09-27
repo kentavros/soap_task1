@@ -59,5 +59,16 @@ catch (Exception $exception)
     $msg = $exception;
 }
 
+//Get data from $_SESSION if isset (from function.php)
+if(getDataSoap())
+{
+    $resSoap = getDataSoap();
+}
+if(getDataCurl())
+{
+    $resCurl = getDataCurl();
+}
+
+
 include('template/template.php');
 ?>
