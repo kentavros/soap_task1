@@ -48,7 +48,7 @@ class BankSoapClient
      * @param $date
      * @return mixed
      */
-    public function getObjCurs($date)
+    private function getObjCurs($date)
     {
         $this->getCurs($date);
         $xmlObj = new SimpleXMLElement($this->curs);
@@ -60,10 +60,12 @@ class BankSoapClient
      * get HTML - string
      * @return bool|string
      */
-    public function getHtmlCurse()
+    public function getHtmlCurse($date)
     {
+        $this->getObjCurs($date);
         if(is_object($this->objCurse)){
-            $html = '<table class="table">';
+            $html = '<p>Date: '.$date.'</p>';
+            $html .= '<table class="table">';
             $html .='<tr><th>Currency name</th><th>Nominal</th><th>Course</th><th>ISO Digital code</th><th>ISO Symbolic code</th></tr>';
             foreach ($this->objCurse as $val){
                 $html .='<tr>';

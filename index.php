@@ -21,8 +21,7 @@ try
         if ($date)
         {
             $bankSoap = new BankSoapClient(BANK_WSDL);
-            $bankSoap->getObjCurs($date);
-            $_SESSION['soap'] = $bankSoap->getHtmlCurse();//->After updating or sending the second form, the displayed data is not lost
+            $_SESSION['soap'] = $bankSoap->getHtmlCurse($date);//->After updating or sending the second form, the displayed data is not lost
         }
     }
 }
@@ -60,13 +59,13 @@ catch (Exception $exception)
 }
 
 //Get data from $_SESSION if isset (from function.php)
-if(getDataSoap())
+if(getData($_SESSION['soap']))
 {
-    $resSoap = getDataSoap();
+    $resSoap = getData($_SESSION['soap']);
 }
-if(getDataCurl())
+if(getData($_SESSION['curl']))
 {
-    $resCurl = getDataCurl();
+    $resCurl = getData($_SESSION['curl']);
 }
 
 

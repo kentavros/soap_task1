@@ -10,4 +10,9 @@
 h4{
     color: darkblue;
 }
+.col-md-6 p{
+    color: darkblue;
+    margin-top: 15px;
+    font-weight: bold;
 
+}

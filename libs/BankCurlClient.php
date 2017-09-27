@@ -79,7 +79,8 @@ class BankCurlClient
     {
         $this->getCurs($date);
         if(is_object($this->curs)){
-            $html = '<table class="table">';
+            $html = '<p>Date: '.$date.'</p>';
+            $html .= '<table class="table">';
             $html .='<tr><th>Currency name</th><th>Nominal</th><th>Course</th><th>ISO Digital code</th><th>ISO Symbolic code</th></tr>';
             foreach ($this->curs as $val)
             {

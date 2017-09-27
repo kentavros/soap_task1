@@ -16,26 +16,14 @@ function __autoload($class)
 }
 
 /**
- * Get data from Session to display data
+ * Get data from Session to display it
  * @return bool
  */
-function getDataSoap()
+function getData($data)
 {
-    if (isset($_SESSION['soap']))
+    if (isset($data))
     {
-        return $_SESSION['soap'];
-    }
-    else
-    {
-        return false;
-    }
-}
-
-function getDataCurl()
-{
-    if (isset($_SESSION['curl']))
-    {
-        return $_SESSION['curl'];
+        return $data;
     }
     else
     {

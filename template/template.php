@@ -43,7 +43,7 @@
                     <p>Input formate: Y-m-d</p>
                 <form class="form-inline" method="post">
                     <label class="sr-only" for="inlineFormInput">Name</label>
-                    <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" name="dateSoap" value="<?=$_POST['dateSoap']?>" placeholder="2017-09-26">
+                    <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" name="dateSoap" placeholder="Example: 2017-09-26">
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
                     <?=$resSoap? $resSoap : '' ?>
@@ -55,7 +55,7 @@
                     <p>Input formate: Y-m-d</p>
                 <form class="form-inline" method="post">
                     <label class="sr-only" for="inlineFormInput">Name</label>
-                    <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" name="dateCurl" value="<?=$_POST['dateCurl']?>" placeholder="2017-09-26">
+                    <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" name="dateCurl" placeholder="Example: 2017-09-26">
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
                     <?=$resCurl? $resCurl : '' ?>
